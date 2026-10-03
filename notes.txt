@@ -7,16 +7,8 @@ Setup a class of job calls. Each job call should have:
 	6. Job type (long call or short call)
 	7. Incentives (if any)
 	8. Any additional information.
+	9. Schedule
 
 
 
-
-Getting html into a BeautifulSoup object. Then need to parse through it with regex to find the post from today's date.
-?? So how do I get today's date from the computer? Google will know.
-
-!! I may not need to. If the most recent post is the first which would come up from a find search, then I don't need to match the date. I just take the first one to show up.
-
-
-
-
-                        <div class="copy"><p>107 on Book 1 and 4 on Book 2</p><p>1 New Call and 6 Open Calls</p><p>New Call #1 - John Burns Construction needs 5 JW&rsquo;s for a Long Call working at the Heartland Industrial Data Center in Sullivan, Indiana.  Job is working 6/10s with a 7:00 AM EST start time.  There is an additional incentive of $7.00 per hour on this call.  Scope of work is Duct Bank.  Pre-employment drug screen and 2 forms of ID are required</p><p>Open Call #1 - JF Electric needs 25 JW&rsquo;s for a Long Call working at the Entek Battery Plant in Terre Haute IN. Job is working 5/10&rsquo;s and 1/8 with a 7:00 AM EST start time. 10 JW&rsquo;s are needed for Bldg 1. 10 JW&rsquo;s are needed for Bldg 2. 5 JW&rsquo;s are needed for Site Work. All scopes are for Book 1 and Book 2 JW&rsquo;s only. Overtime is not mandatory for this call. Onsite preemployment drug test, 2 forms of ID, and Osha 10 are required.</p><p>Open Call #2 - Sycamore Engineering needs 4 JW&rsquo;s for a Long Call working at the Entek Battery Plant in Terre Haute IN. Job is working 5/10&rsquo;s and 1/8 with a 7:00 AM EST start time. Scope of work is for Book 1 and Book 2 JW&rsquo;s only. Current drug card, 2 forms of ID, and Osha 10 are required.</p><p>Open Call #3 - Tri-City Electric needs 2 JW&rsquo;s for a Long Call working at the Entek Battery Plant in Terre Haute IN. Job is working 5/10s and 1/8 with a 7:00 AM EST start time. Current drug card, 2 forms of ID, and Osha 10 are required.</p><p>Open Call #4- NRK, inc needs 1 JW&rsquo;s for a Long Call working at Entek Battery Plant in Terre Haute IN. Job is working 5/10s and 1/8 with a 7 AM EST start time. Current drug card, 2 forms of ID, and Osha 10 are required.</p><p>Open Call #5- Vader Electric needs 1 JW&rsquo;s for Entek Battery Plant in Terre Haute IN. The Job is a Long Call Working 7/12&rsquo;s with a 6:30 AM EST start time. Scope of Work is Book 1 &amp; 2 only. On Site Drug Test, OSHA 10 and 2 Forms of ID required.</p><p>Open call #6 - Lytle Electric needs 2 JWs for a long call at Marathon Refinery. The job is working 4/10s with a 6:30 AM CST start time. There is a DISA hair and urine drug test, THC is allowed within the program parameters, fit for duty test, no beards, Mustache must be trimmed to the corner of your mouth. Must have safety toed boots with a defined heel and two forms of ID.</p><p>**Open call for JIT- Cassady Electric needs 1 Journeyman Installer Tech with Bicsi Certs for various jobs.</p><p>**Electric Plus call went to position 108 off of Book 1.</p></div>
+Apparently Github can run code on it's own on a schedule. So, instead of leaving up my own server for that, I'll be better off to let GitHub run my code and get my update emails that way.

@@ -16,6 +16,11 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
       - name: Run the script with hidden variables
         #This injects the GitHub vault secrets securely into the environment
         env:

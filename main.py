@@ -1,7 +1,8 @@
-from testing_grounds import get_725_calls_from_tumblr;
+from testing_grounds import get_725_calls_from_tumblr
+from deliver_calls import send_message
 
 def main():
-	get_725_calls_from_tumblr();
-
+	message = get_725_calls_from_tumblr()
+	send_message(message)
 if __name__ == "__main__":
-	main();
+	main()

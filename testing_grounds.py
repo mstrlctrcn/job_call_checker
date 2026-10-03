@@ -17,7 +17,7 @@ def get_725_calls_from_tumblr():
 			date = posting.find('div', class_ = 'title');
 			calls = posting.find('div', class_ = 'copy');
 			listings = CallsListing(str(date), str(calls));
-			listings.print_calls_all();
+			return listings.get_shortened_calls_all();
 		else:
 			print("Posting not found");
 
@@ -33,10 +33,11 @@ class CallsListing():
 			if re.search(r"[Cc]all.?#", section):
 				job = JobCall(section);
 				self.calls.append(job);
-	def print_calls_all(self):
+	def get_shortened_calls_all(self):
+		calls = []
 		for call in self.calls:
-			print(call.oneline_str());
-			print();
+			calls.append(call.oneline_str())
+		return "\n".join(calls)
 
 
 
