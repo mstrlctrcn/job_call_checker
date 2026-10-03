@@ -1,0 +1,25 @@
+name: Scheduled Python Alert
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '5 22 * * 1-5'
+jobs:
+  run-alerts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run the script with hidden variables
+        #This injects the GitHub vault secrets securely into the environment
+        env:
+          MY_GMAIL_USERNAME: ${{ secrets.MY_GMAIL_USERNAME }}
+          MY_SECRET_KEY: ${{ secrets.MY_SECRET_KEY }}
+          MY_RECEIVING_EMAIL: ${{ secrets.MY_RECEIVING_EMAIL }}
+        run: python main.py
