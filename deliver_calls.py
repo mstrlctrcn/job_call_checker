@@ -10,7 +10,7 @@ def send_message(message_text):
 	receiving_email = os.getenv("MY_RECEIVING_EMAIL")
 	secret_code = os.getenv("MY_SECRET_KEY")
 	msg["Subject"] = "Job Calls"
-	msg.set_content(message_text, charset='utf-8')
+	msg.set_content(message_text)
 	msg["From"] = sending_email
 	msg["To"] = receiving_email
 	# Open a secure connection pipe
