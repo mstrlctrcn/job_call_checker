@@ -1,11 +1,12 @@
-from urllib.request import urlopen;
+from urllib.request import Request, urlopen;
 from urllib.error import HTTPError, URLError;
 from bs4 import BeautifulSoup;
 import re;
 
 def get_725_calls_from_tumblr():
+	req = Request('https://ibew725.tumblr.com/', headers={f'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64'})
 	try:
-		html = urlopen('https://ibew725.tumblr.com/');
+		html = urlopen(req);
 	except HTTPError as e:
 		print(e);
 	except URLError as e:
