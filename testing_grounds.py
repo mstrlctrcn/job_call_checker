@@ -12,7 +12,8 @@ def get_725_calls_from_tumblr():
 	except URLError as e:
 		print("The server could not be found.")
 	else:
-		bs = BeautifulSoup(html, 'html.parser');
+		html_text = html.read().decode('utf-8', errors='ignore')
+		bs = BeautifulSoup(html_text, 'html.parser');
 		posting = bs.find('div', class_ = 'post');
 		if posting:
 			date = posting.find('div', class_ = 'title');

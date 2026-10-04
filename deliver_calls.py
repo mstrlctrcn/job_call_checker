@@ -10,14 +10,15 @@ def send_message(message_text):
 	receiving_email = os.getenv("MY_RECEIVING_EMAIL")
 	secret_code = os.getenv("MY_SECRET_KEY")
 	msg["Subject"] = "Job Calls"
-	msg.set_content(message_text)
+	msg.set_content(message_text, charset='utf-8')
 	msg["From"] = sending_email
 	msg["To"] = receiving_email
 	# Open a secure connection pipe
 	try:
 		with smtplib.SMTP("smtp.gmail.com", 587) as server:
-		    server.starttls()  # Secure the connection
-		    server.login(sending_email, secret_code)
-		    server.send_message(msg)
+			server.starttls()  # Secure the connection
+			server.login(sending_email, secret_code)
+			server.send_message(msg)
+			#print("Success")
 	except Exception as e:
 		print(f"an error occurred: {e}")
