@@ -4,6 +4,35 @@ from bs4 import BeautifulSoup;
 import re;
 import html
 
+def get_538_calls_from_website():
+	# This needs work, but until I get some examples of how they input their job calls, I'm limited.
+	# There are no calls currently. I will leave the posting in the notes. When there is a job call put in, I will post that to
+	# the notes as well. In the meantime, this portion is on hold.
+	req = Request('https://ibew725.tumblr.com/rss',
+			headers = {
+				'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0',
+				'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+				'Accept-Language': 'en-US,en;q=0.5'
+			}
+		)
+		try:
+			html = urlopen(req);
+		except HTTPError as e:
+			print(e);
+		except URLError as e:
+			print("The server could not be found.")
+		else:
+			html_text = html.read().decode('utf-8', errors='ignore')
+			bs = BeautifulSoup(html_text, 'html.parser');
+			posting = bs.find('div', id = "main-content");
+			if posting:
+				date = posting.find('title');
+				calls = posting.find('description');
+				listings = CallsListing((date).string, (calls).string);
+				return listings.get_shortened_calls_new();
+			else:
+				print("Posting not found");
+
 def get_725_calls_from_tumblr():
 	req = Request('https://ibew725.tumblr.com/rss',
 		headers = {
