@@ -2,9 +2,16 @@ from urllib.request import Request, urlopen;
 from urllib.error import HTTPError, URLError;
 from bs4 import BeautifulSoup;
 import re;
+import html
 
 def get_725_calls_from_tumblr():
-	req = Request('https://ibew725.tumblr.com/', headers={f'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64'})
+	req = Request('https://ibew725.tumblr.com/rss',
+		headers = {
+			'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0',
+			'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+			'Accept-Language': 'en-US,en;q=0.5'
+		}
+	)
 	try:
 		html = urlopen(req);
 	except HTTPError as e:
@@ -13,18 +20,19 @@ def get_725_calls_from_tumblr():
 		print("The server could not be found.")
 	else:
 		html_text = html.read().decode('utf-8', errors='ignore')
-		bs = BeautifulSoup(html_text, 'html.parser');
-		posting = bs.find('div', class_ = 'post');
+		bs = BeautifulSoup(html_text, 'xml');
+		posting = bs.find('item');
 		if posting:
-			date = posting.find('div', class_ = 'title');
-			calls = posting.find('div', class_ = 'copy');
-			listings = CallsListing(str(date), str(calls));
-			return listings.get_shortened_calls_all();
+			date = posting.find('title');
+			calls = posting.find('description');
+			listings = CallsListing((date).string, (calls).string);
+			return listings.get_shortened_calls_new();
 		else:
 			print("Posting not found");
 
 class CallsListing():
 	def __init__(self, date, text):
+		text = html.unescape(text)
 		self.full_text = text;
 		self.date = date;
 		self.calls = [];

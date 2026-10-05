@@ -14,3 +14,5 @@ Setup a class of job calls. Each job call should have:
 Apparently Github can run code on it's own on a schedule. So, instead of leaving up my own server for that, I'll be better off to let GitHub run my code and get my update emails that way.
 
 What else should this program do? I think I would like it to gather info from other halls, obviously. Though that's a lower priority right now. I would like to set it to track calls perhaps? That way the information it sends me is regarding new calls only? Or maybe the information is laid out so that open calls are further back and new calls are prioritized?
+
+Future updates: Maybe use a crawler to login to the portal and access call information directly from the portal instead of the postings of them.

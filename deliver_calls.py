@@ -9,7 +9,7 @@ def send_message(message_text):
 	sending_email = os.getenv("MY_GMAIL_USERNAME")
 	receiving_email = os.getenv("MY_RECEIVING_EMAIL")
 	secret_code = os.getenv("MY_SECRET_KEY")
-	msg["Subject"] = "Job Calls"
+	msg["Subject"] = "Daily New Job Calls"
 	msg.set_content(message_text)
 	msg["From"] = sending_email
 	msg["To"] = receiving_email
