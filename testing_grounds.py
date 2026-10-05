@@ -40,6 +40,12 @@ class CallsListing():
 		for call in self.calls:
 			calls.append(call.oneline_str())
 		return "\n".join(calls)
+	def get_shortened_calls_new(self):
+		calls = []
+		for call in self.calls:
+			if call.status.casefold() == "new".casefold():
+				calls.append(call.oneline_str())
+		return "\n".join(calls)
 
 
 
@@ -72,5 +78,5 @@ class JobCall():
 		self.call_type = re.search(r"a(.{4,7})?[Cc]all", self.full_text).group(1);
 		self.job_site = re.search(r"at (.+?)\.", self.full_text).group(1);
 		self.incentives = re.search(r"incentive.*?($.{4})", self.full_text)
-		self.status = re.search(r"(.+?) [cC]all *#", self.full_text).group(1);
+		self.status = re.search(r"(.+?) [cC]all *#", self.full_text).group(1).strip();
 		self.schedule = re.search(r"[wW]orking.*?(\d\/\d[^\.]*?)\.", self.full_text).group(1);
