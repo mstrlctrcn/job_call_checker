@@ -15,23 +15,23 @@ def get_538_calls_from_website():
 				'Accept-Language': 'en-US,en;q=0.5'
 			}
 		)
-		try:
-			html = urlopen(req);
-		except HTTPError as e:
-			print(e);
-		except URLError as e:
-			print("The server could not be found.")
+	try:
+		html = urlopen(req);
+	except HTTPError as e:
+		print(e);
+	except URLError as e:
+		print("The server could not be found.")
+	else:
+		html_text = html.read().decode('utf-8', errors='ignore')
+		bs = BeautifulSoup(html_text, 'html.parser');
+		posting = bs.find('div', id = "main-content");
+		if posting:
+			date = posting.find('title');
+			calls = posting.find('description');
+			listings = CallsListing((date).string, (calls).string);
+			return listings.get_shortened_calls_new();
 		else:
-			html_text = html.read().decode('utf-8', errors='ignore')
-			bs = BeautifulSoup(html_text, 'html.parser');
-			posting = bs.find('div', id = "main-content");
-			if posting:
-				date = posting.find('title');
-				calls = posting.find('description');
-				listings = CallsListing((date).string, (calls).string);
-				return listings.get_shortened_calls_new();
-			else:
-				print("Posting not found");
+			print("Posting not found");
 
 def get_725_calls_from_tumblr():
 	req = Request('https://ibew725.tumblr.com/rss',
@@ -55,7 +55,9 @@ def get_725_calls_from_tumblr():
 			date = posting.find('title');
 			calls = posting.find('description');
 			listings = CallsListing((date).string, (calls).string);
-			return listings.get_shortened_calls_new();
+			string1 = listings.get_shortened_calls_new()
+			string2 = listings.get_calls_all();
+			return string1 + "\n\n\n" + string2
 		else:
 			print("Posting not found");
 
@@ -82,6 +84,11 @@ class CallsListing():
 		for call in self.calls:
 			if call.status.casefold() == "new".casefold():
 				calls.append(call.oneline_str())
+		return "\n".join(calls)
+	def get_calls_all(self):
+		calls = []
+		for call in self.calls:
+			calls.append(str(call))
 		return "\n".join(calls)
 
 
