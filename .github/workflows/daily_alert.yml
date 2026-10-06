@@ -3,7 +3,7 @@ name: Scheduled Python Alert
 on:
   workflow_dispatch:
   schedule:
-    - cron: '5 22 * * 1-5'
+    - cron: '*/5 * * * 1-5'
 jobs:
   run-alerts:
     runs-on: ubuntu-latest
