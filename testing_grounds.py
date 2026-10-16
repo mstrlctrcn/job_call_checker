@@ -117,10 +117,21 @@ class JobCall():
 	def oneline_str(self):
 		return(f"{self.schedule} at {self.job_site}. Incentives: {self.incentives}")
 	def extract_content(self):
-		self.contractor = re.search(r"- *(.+)needs", self.full_text).group(1);
-		self.manpower = int(re.search(r"needs.*?(\d+).*?JW", self.full_text).group(1));
-		self.call_type = re.search(r"a(.{4,7})?[Cc]all", self.full_text).group(1);
-		self.job_site = re.search(r"at (.+?)\.", self.full_text).group(1);
+		match = re.search(r"- *(.+)needs", self.full_text)
+		if match:
+			self.contractor = match.group(1)
+		match = re.search(r"needs.*?(\d+).*?JW", self.full_text);
+		if match:
+			self.manpower = int(match.group(1))
+		match = re.search(r"a(.{4,7})?[Cc]all", self.full_text);
+		if match:
+			self.call_type = match.group(1)
+		match = re.search(r"at (.+?)\.", self.full_text);
+		if match:
+			self.job_site = match.group(1)
 		self.incentives = re.search(r"incentive.*?($.{4})", self.full_text)
-		self.status = re.search(r"(.+?) [cC]all *#", self.full_text).group(1).strip();
-		self.schedule = re.search(r"[wW]orking.*?(\d\/\d[^\.]*?)\.", self.full_text).group(1);
+		match = re.search(r"(.+?) [cC]all *#", self.full_text)
+		if match:
+			self.status = match.group(1).strip()
+		match = re.search(r"[wW]orking.*?(\d\/\d[^\.]*?)\.", self.full_text);
+		self.schedule = match.group(1)
